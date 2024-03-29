@@ -1,0 +1,41 @@
+{
+    "todos": [
+      {
+        "userId": 1,
+        "id": 1,
+        "title": "Sleeping",
+        "completed": false
+      },
+      {
+        "userId": 1,
+        "id": 2,
+        "title": "Buy Grocery",
+        "completed": false
+      },
+      {
+        "userId": 1,
+        "id": 3,
+        "title": "Master Backend",
+        "completed": false
+      },
+      {
+        "userId": 1,
+        "id": 4,
+        "title": "Learn new language",
+        "completed": true
+      },
+      {
+        "userId": 1,
+        "id": 5,
+        "title": "Stay healthy",
+        "completed": false
+      },
+      {
+        "userId": 1,
+        "id": 7,
+        "title": "Do dinner",
+        "completed": false
+      }
+      
+    ]
+  }
