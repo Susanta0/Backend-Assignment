@@ -1,0 +1,38 @@
+1.create a Collection
+Ans: db.createCollection("products")
+
+2.How do you insert a new document into a collection named products with the following details: name: "Laptop", price: 1200, category: "Electronics"?
+Ans: db.products.insertOne({name:"Laptop",price:1200,category:"Electronics"})
+
+3.How do you find all documents in the products collection where the category is "Electronics"?
+Ans: db.products.find({category:"Electronics"})
+
+4.How do you update the price of the "Laptop" in the products collection to 1000?
+Ans: db.products.updateOne({name:"Laptop"},{$set:{price:1000}})
+
+5.How do you find products in the products collection that are in the "Electronics" category and have a price less than 1500?
+Ans: db.products.find({$and:[{category:"Electronics"},{price:{$lt:1500}}]})
+
+6.How do you find products in the products collection that are either in the "Electronics" category or have a price less than 500?
+Ans:  db.products.find({$or:[{category:"Electronics"},{price:{$lt:500}}]})
+
+7.How do you increment the price of all products in the products collection by 200?
+Ans: db.products.updateMany({}, { $inc: { price: 200 } })
+
+8.How do you find all products in the products collection with a price between 500 and 1500?
+Ans: db.products.find({$and:[{price:{$gte:500}},{price:{$lte:1500}}]})
+
+9.How do you delete all products from the products collection that are in the "Furniture" category?
+Ans: db.products.deleteMany({category:"Furniture"})
+
+10.How do you count the number of products in the "Electronics" category in the products collection?
+Ans: db.products.countDocuments({category:"Electronics"})
+
+11.How do you find all products in the products collection that are not in the "Electronics" category?
+Ans: db.products.find({category:{$ne:"Electronics"}})
+
+12How do you insert multiple documents into the users collection with the following details: { name: "Alice", age: 30 }, { name: "Bob", age: 25 }?
+Ans: db.users.insertMany([{name:"Alice",age:30},{name:"Bob",age:25}])
+
+13.How do you find documents in the products collection where the category is either "Electronics" or "Books"?
+Ans: db.products.find({$or:[{category:"Electronics"},{category:"Books"}]})
