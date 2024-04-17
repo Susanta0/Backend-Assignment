@@ -32,17 +32,17 @@ Ans: db.orders.aggregate([{$group:{_id:1,TotalRevenue:{$sum:"$total"}}}])
 Ans: db.orders.aggregate([{$match:{status:"shipped",ship_date:{$lt:"2022-05-26"}}}])
  
 12. Write Mongo query to find the maximum price as maxPrice of products and their names as name for each category.
-Ans: 
+Ans: db.products.aggregate([{$group:{_id:"$category_id", maxPrice:{$max:"$price"},Name:{$first:"$name"}}},{$project:{_id:0, category_id:"$_id", maxPrice:1,Name:1}}])
  
 13. Write Mongo query to find Most used payment Method as paymentMethod and the number of time it is used as count.
-Ans:
+Ans: db.payments.aggregate([{$group:{_id:"$paymentMethod",count:{$sum:1}}},{$project:{_id:0,paymentMethod:"$_id",count:1}}])
  
 14. Write Mongo query to find the total count of orders by status.
 Ans: db.orders.aggregate([{$group:{_id:"$status",Count:{$sum:1}}}])
  
 15. Write Mongo query to retrieve the orders grouped by customer_id with the max total
-Ans:
+Ans: db.orders.aggregate([{$group:{_id:"$customer_id",maxTotal:{$max:"$total"}}}])
  
 16. Write Mongo query to retrieve the orders grouped by customer_id with the average total.
-Ans:
+Ans: db.orders.aggregate([{$group:{_id:"$customer_id",Average:{$avg:"$total"}}}])
  

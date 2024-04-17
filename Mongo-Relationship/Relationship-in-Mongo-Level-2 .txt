@@ -1,0 +1,59 @@
+1.Find the names of employees who work in the "Finance" department and have made sales on or after "2023-09-16.
+Ans: db.EmployeesCollection.aggregate([ { $lookup: { from: "DepartmentsCollection", localField: "department_id", foreignField: "_id", as: "department" } }, { $match: { "department.name": "Finance" } }, { $lookup: { from: "SalesCollection", localField: "_id", foreignField: "employee_id", as: "sales" } }, { $match: { "sales.sale_date": { $gte: "2023-09-16" } } }, { $project: { _id: 0, name: 1 } }] )
+
+2.Find the total sales count and total sales amount for each employee who has made a sale, and sort the results by total sales amount in descending order.
+Ans: 
+
+3.Retrieve a list of departments with more than 10 employees
+Ans: 
+
+4.Find the employees who have worked in the company for more than 5 years
+Ans: 
+
+5.Find the employee with the highest salary
+Ans: 
+
+6.List the names and ages of employees in the "HR" department
+Ans: 
+
+7.Retrieve the names of employees who have worked on the "Employee Management System" project
+Ans: 
+
+8.Find the employees who have not made any sales
+Ans: 
+
+9.List the names of employees who have made a sale in September 2023
+Ans: 
+
+10.Find the departments where the average employee age is greater than 35
+Ans: 
+
+11.Find the employees who have worked on at least three different projects
+Ans: 
+
+12.List the names of employees who have not been assigned to any project
+Ans: 
+
+13.Find the employees who have worked on projects from multiple departments
+Ans: 
+
+14.Find the employees who have the highest sales amount in a single sale
+Ans: 
+
+15.Retrieve the names of employees who have not made a sale in the last 90 days
+Ans: 
+
+16.Find the departments where the total employee salaries exceed $500,000
+Ans: 
+
+17.List the employees who have worked on the "Payroll Software" project and are older than 35
+Ans: 
+
+18.Find the total number of sales and the total sales amount for each employee in the "HR" department
+Ans: 
+
+19.List the employees who have not been assigned to any project in the "Finance" department
+Ans: 
+
+20.List the employees who have worked on all projects in the "Engineering" department
+Ans: 
