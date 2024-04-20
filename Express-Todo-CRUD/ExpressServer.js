@@ -15,7 +15,7 @@ const getTodos = () => {
 server.get("/todos", (req, res) => {
   const todos = getTodos();
   res.json(todos);
-});
+}); 
 
 server.post("/todos/addtodo", (req, res) => {
   // Read existing data from db.json
@@ -28,9 +28,6 @@ server.post("/todos/addtodo", (req, res) => {
   // Respond with updated todos
   res.json(dbData.todos);
 });
-
-
-
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

@@ -14,16 +14,17 @@ Ans: db.employees.aggregate([{$lookup:{from:"departments",localField:"department
 Ans: db.employees.aggregate([{$lookup:{from:"departments",localField:"department_id",foreignField:"_id",as:"departments_docs"}},{$unwind:"$departments_docs"},{$match:{"departments_docs.name":"Engineering"}},{$project:{_id:0,name:1,"departments_docs.location":1}}])
 
 6.You want to find out how many employees are under 30 and how many are 30 or older in each department. Create a MongoDB query that first joins the "employees" and "departments" collections, then groups employees by department and age range, and calculates the count in each group.
-Ans: 
+Ans: db.employees.aggregate([ { $lookup: { from: "departments", localField: "department_id", foreignField: "_id", as: "department" } }, { $unwind: "$department" }, { $group: { _id: { department_id: "$department._id", department_name: "$department.name", age_range: { $cond: { if: { $lt: ["$age", 30] }, then: "Under 30", else: "30 or Older" } } }, count: { $sum: 1 } } }] )
 
 7.In your MongoDB database, you want to find the average age of employees in each department. Write a query that performs a $lookup to join the collections, uses $unwind to flatten the "department" array, and then groups employees by department to calculate the average age.
-Ans: 
+Ans: db.employees.aggregate([ { $lookup: { from: "departments", localField: "department_id", foreignField: "_id", as: "department" } }, { $unwind: "$department" }, {$group:{_id:"$department.name",averageAge:{$avg:"$age"}}}] )
+
 
 8.You need to find employees in the "Finance" department who are older than 30. Formulate a MongoDB query that performs a $lookup to join the collections, projects specific fields, and then filters for employees meeting the specified criteria.
-Ans: 
+Ans: db.employees.aggregate([ { $lookup: { from: "departments", localField: "department_id", foreignField: "_id", as: "department" } }, { $unwind: "$department" },{$match:{age:{$gt:30}}},{ $group: { _id:"$department.name",Count:{$sum:1}}}])
 
 9.In your MongoDB database, you want to find the two youngest employees in each department. Create a MongoDB query that performs a $lookup to join the "employees" and "departments" collections, sorts employees in each department by age in ascending order, and returns only the two youngest employees from each department.
 Ans: 
 
 10.Suppose you have an array of department IDs and you want to find all employees who belong to any of these departments. Write a MongoDB query that performs a $lookup to join the "employees" and "departments" collections, and then matches employees based on a provided array of department IDs.
-Ans: 
+Ans: db.employees.aggregate([ { $lookup: { from: "departments", localField: "department_id", foreignField: "_id", as: "department" } }, { $unwind: "$department" }, { $match: { "department._id": { $in: departmentIds }} }] )
