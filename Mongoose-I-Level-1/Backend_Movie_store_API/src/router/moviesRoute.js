@@ -5,9 +5,16 @@ const moviesRouter= express.Router()
 
 moviesRouter.get("/", async(req,res)=>{
     try {
-        const moviesData= await moviesModel.find()
+        const query={}
+        if(req.query.title){
+            query.title=req.query.title
+        }if(req.query.reviews){
+            query.reviews=req.query.reviews
+        }
+        console.log(req.query);
+        const moviesData= await moviesModel.find(query)
         res.status(200).send(moviesData)
-        console.log(moviesData);
+        // console.log(moviesData);
     } catch (error) {
         console.log(error);
         res.status(400).send("Somthing Went Wrong")
