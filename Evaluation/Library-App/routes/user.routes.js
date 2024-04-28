@@ -1,7 +1,7 @@
 const {Router}=require("express")
 const userModel = require("../models/user.schema")
 require("dotenv").config()
-
+const secret=process.env.secret
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const userRouter=Router()
@@ -44,6 +44,19 @@ userRouter.post("/login", async (req, res)=>{
                     return res.status(400).send("wrong password")
                 }
             });
+        }
+        
+    } catch (error) {
+        return res.status(400).send({message:error.message})
+    }
+})
+
+
+userRouter.get("/logout", async(req,res)=>{
+    const token =req.headers.authorization?.split(" ")[1]
+    try {
+        if(token){
+            res.status(200).send("logout successfully")
         }
         
     } catch (error) {

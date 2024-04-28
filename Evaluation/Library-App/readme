@@ -1,0 +1,22 @@
+## Library_App
+
+### user details:
+    * user register
+    * user login
+    * user logout
+
+
+### book details:
+    * get all book
+    * book add
+    * book edit
+    * book delete
+
+
+# how to install:
+    * clone reposetory
+    * npm i express mongoose nodemon bcrypt jsonwebtoken dot env
+
+# run backend:
+    * npm run start
+

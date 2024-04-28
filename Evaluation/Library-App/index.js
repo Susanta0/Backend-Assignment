@@ -1,6 +1,7 @@
 const express= require("express")
 const Dbconnection = require("./config/db")
 const userRouter = require("./routes/user.routes")
+const bookRouter = require("./routes/book.routes")
 
 const app = express()
 require("dotenv").config()
@@ -8,6 +9,7 @@ const PORT = process.env.PORT
 app.use(express.json())
 
 app.use("/user", userRouter)
+app.use("/book", bookRouter)
 
 app.get("/", (req, res)=>{
     return res.status(200).send("this is home page")
