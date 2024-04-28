@@ -13,7 +13,7 @@ bookRouter.get("/showbook", async (req, res)=>{
     }
 })
 
-bookRouter.post("/addbook", async (req, res)=>{
+bookRouter.post("/addbook", auth, async (req, res)=>{
     const {title, author, discription, year}=req.body
     try {
         const bookDetails= new bookModel({title, author, discription, year})
@@ -24,5 +24,15 @@ bookRouter.post("/addbook", async (req, res)=>{
     }
 })
 
+
+bookRouter.post("/:id/deletebook", auth, async (req, res)=>{
+    try {
+        const bookDetails= await bookModel.findByIdAndDelete(req.params.id)
+      
+        return res.status(200).send("book delete successfully")
+    } catch (error) {
+        return res.status(400).send("you can't add the book, first register successfully")
+    }
+})
 
 module.exports=bookRouter
