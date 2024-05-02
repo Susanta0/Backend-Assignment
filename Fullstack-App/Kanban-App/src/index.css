@@ -1,0 +1,9 @@
+.form{
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    padding: 2em;
+    margin: 10em auto;
+    gap: 2em;
+}

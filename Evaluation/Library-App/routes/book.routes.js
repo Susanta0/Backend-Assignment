@@ -3,7 +3,7 @@ const bookModel = require("../models/book.schema")
 const auth = require("../middleware/user.auth")
 const bookRouter=Router()
 
-bookRouter.get("/showbook", async (req, res)=>{
+bookRouter.get("/showbook", auth, async (req, res)=>{
     const{data}=req.body
     try {
         const allbooks= await bookModel.find({data})
